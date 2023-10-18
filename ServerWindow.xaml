@@ -49,7 +49,7 @@
         </GroupBox>
         <GroupBox Header="Статус" Grid.Column="1">
             <DockPanel VerticalAlignment="Stretch">
-                <Label Content="Вимкнуто"  DockPanel.Dock="Top"
+                <Label Content="Выключен"  DockPanel.Dock="Top"
                    HorizontalContentAlignment="Center"
                    Background="Red"
                    x:Name="StatusLabel"/>

@@ -42,6 +42,7 @@ namespace Занятие_в_аудитории_1_05._10._2023__Сетевое_п
                 try
                 {
                     StatusLabel.Background = new SolidColorBrush(Colors.Green);
+                    StatusLabel.Content = "Включен";
                     // парсимо хост - визначаємо номер-адрес вузла з текстового вигляду
                     IPAddress ip = IPAddress.Parse(HostTextBox.Text);
                     // те ж саме з портом
@@ -67,6 +68,7 @@ namespace Занятие_в_аудитории_1_05._10._2023__Сетевое_п
             else  // сервер ON, виключаємо
             {
                 StatusLabel.Background = new SolidColorBrush(Colors.Red);
+                StatusLabel.Content = "Выключен";
                 // сервер зупинити, якщо він в очікуванні, дуже складно
                 listenSocket.Close();  // створюємо конфлікт - закриваємо сокет
                 // це призведе до exception у потоці сервера 
