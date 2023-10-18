@@ -34,7 +34,7 @@ namespace Занятие_в_аудитории_1_05._10._2023__Сетевое_п
             LastSyncMoment = default;
         }
 
-        private void SendButton_Click(object sender, RoutedEventArgs e)
+        private async void SendButton_Click(object sender, RoutedEventArgs e)
         {
             String[] address = HostTextBox.Text.Split(':');
             try
@@ -49,9 +49,17 @@ namespace Занятие_в_аудитории_1_05._10._2023__Сетевое_п
                         Text = MessageTextBox.Text
                     }
                 });
+                NotificationPopup.IsOpen = true;
+                await Task.Delay(TimeSpan.FromSeconds(3));
+                NotificationPopup.IsOpen = false;
             }
             catch (Exception ex)
             {
+                NotificationBorder.Background = new SolidColorBrush(Colors.Red);
+                NotificationText.Text = "Ошибка: Сообщение не отправлено";
+                NotificationPopup.IsOpen = true;
+                await Task.Delay(TimeSpan.FromSeconds(3));
+                NotificationPopup.IsOpen = false;
                 MessageBox.Show(ex.Message);
             }
         }

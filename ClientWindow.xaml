@@ -94,7 +94,7 @@
 
                HorizontalContentAlignment="Center"
 
-               Background="Pink"
+               Background="Tomato"
 
                x:Name="StatusLabel"/>
             <Button Content="Надіслати"
@@ -110,5 +110,10 @@
 
                x:Name="ClientLog"/>
 
+        <Popup Name="NotificationPopup" IsOpen="False" PlacementTarget="{Binding ElementName=SendButton}" Placement="Bottom">
+            <Border Name="NotificationBorder" Background="LightGreen" BorderBrush="Green" BorderThickness="2" CornerRadius="5">
+                <TextBlock Name="NotificationText" Text="Сообщение отправлено" Margin="10" />
+            </Border>
+        </Popup>
     </Grid>
 </Window>
