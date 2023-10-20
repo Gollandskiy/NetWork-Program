@@ -111,7 +111,8 @@ namespace Занятие_в_аудитории_1_05._10._2023__Сетевое_п
                     {
                         foreach (var message in response.Messages)
                         {
-                            str += message + "\n";
+                            string messageText = $"{message.Moment:HH:mm:ss} - {message.Login}: {message.Text}\n";
+                            str += messageText;
                             if (message.Moment > LastSyncMoment)
                             {
                                 LastSyncMoment = message.Moment;
