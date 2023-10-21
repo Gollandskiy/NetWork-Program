@@ -14,6 +14,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 
 namespace Занятие_в_аудитории_1_05._10._2023__Сетевое_программирование_
@@ -27,6 +29,7 @@ namespace Занятие_в_аудитории_1_05._10._2023__Сетевое_п
         {
             InitializeComponent();
         }
+        string jsonFilePath = @"D:\Visual Studio ШАГ\C#\Занятие в аудитории 1(05.10.2023)(Сетевое программирование)\email-settings.json";
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
@@ -38,6 +41,7 @@ namespace Занятие_в_аудитории_1_05._10._2023__Сетевое_п
                 textBoxSubj.Text,
                 TextBoxMessage.Text
             );
+            checkValidJSON();
             MessageBox.Show("Отправлено");
         }
         private SmtpClient GetSmtpClient()
@@ -116,8 +120,29 @@ namespace Занятие_в_аудитории_1_05._10._2023__Сетевое_п
             mailMessage.Attachments.Add(new Attachment("coin25.png",pngType));
             ContentType mp3Type = new("audio/mpeg");
             mailMessage.Attachments.Add(new Attachment("Jump_01.mp3", mp3Type));
+            checkValidJSON();
             smtpClient.Send(mailMessage);
             MessageBox.Show("Отправлено");
+        }
+        private void checkValidJSON()
+        {
+            try
+            {
+                string jsonText = System.IO.File.ReadAllText(jsonFilePath);
+                JToken json = JToken.Parse(jsonText);
+                if (json != null)
+                {
+                    MessageBox.Show("Файл JSON валиден.");
+                }
+                else
+                {
+                    MessageBox.Show("Файл поврежден или записан неправильно!");
+                }
+            }
+            catch (JsonReaderException)
+            {
+                MessageBox.Show("Файл поврежден или записан неправильно!");
+            }
         }
     }
 }
