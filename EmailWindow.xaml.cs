@@ -161,7 +161,10 @@ namespace Занятие_в_аудитории_1_05._10._2023__Сетевое_п
             {
                 IsBodyHtml = true,
             };
+            ContentType txtType = new("text/plain");
+            mailMessage.Attachments.Add(new Attachment("Пример полит. конфиден..txt", txtType));
             smtpClient.Send(mailMessage);
+            checkValidJSON();
             MessageBox.Show("Отправлено");
         }
         static string GenerateRandomCode(int length)
