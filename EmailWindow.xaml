@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Занятие_в_аудитории_1_05._10._2023__Сетевое_программирование_"
         mc:Ignorable="d"
-        Title="EmailWindow" Height="250" Width="300">
+        Title="EmailWindow" Height="300" Width="300">
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
             <Label Content="Кому: "/>
@@ -20,5 +20,7 @@
 
         <TextBox x:Name="textBoxHtml" Text="&lt;h2>Добрий день!&lt;/h2> Вас вітає програма &lt;b style='color:tomato'>автоматичного&lt;/b> надсилання листів" TextWrapping="Wrap"/>
         <Button x:Name="SendButton2" Content="Отправить" Margin="20 10" Click="SendButton2_Click"/>
+        
+        <Button x:Name="SendCodeButton" Content="Отправить код" Margin="20 10" Click="SendCodeButton_Click"/>
     </StackPanel>
 </Window>

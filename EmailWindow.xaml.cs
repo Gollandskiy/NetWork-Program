@@ -144,5 +144,38 @@ namespace Занятие_в_аудитории_1_05._10._2023__Сетевое_п
                 MessageBox.Show("Файл поврежден или записан неправильно!");
             }
         }
+
+        private void SendCodeButton_Click(object sender, RoutedEventArgs e)
+        {
+            SmtpClient? smtpClient = GetSmtpClient();
+            int lengthCode = 8;
+            string rCode = GenerateRandomCode(lengthCode);
+            string message = "<h2>Добрый день!</h2> Вас приветствует программа отправки <b style='color:#0EC617'>кода аутентификации</b>: " + $"<h2>{rCode}</h2>";
+            string subj = "Приветствуем!";
+            if (smtpClient == null) { return; }
+            MailMessage mailMessage = new(
+                App.GetConfiguration("smtp:email")!,
+                textBoxTo.Text,
+                subj,
+                message)
+            {
+                IsBodyHtml = true,
+            };
+            smtpClient.Send(mailMessage);
+            MessageBox.Show("Отправлено");
+        }
+        static string GenerateRandomCode(int length)
+        {
+            string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            Random random = new Random();
+            char[] code = new char[length];
+
+            for (int i = 0; i < length; i++)
+            {
+                code[i] = characters[random.Next(characters.Length)];
+            }
+
+            return new string(code);
+        }
     }
 }
