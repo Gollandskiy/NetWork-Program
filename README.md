@@ -11,6 +11,10 @@
 # Update (21.10.2023)
 ![image](https://github.com/Gollandskiy/NetWork-Program/assets/126692933/3aa9c3c5-158b-4fc8-8a82-13debb6bd093)
 
+# Update (30.10.2023)
+![image](https://github.com/Gollandskiy/NetWork-Program/assets/126692933/200633a8-fa6d-4abf-b209-6a440ee680d4)
+
+
 
 
 
