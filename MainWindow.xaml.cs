@@ -40,5 +40,10 @@ namespace Занятие_в_аудитории_1_05._10._2023__Сетевое_п
         {
             new EmailWindow().ShowDialog();
         }
+
+        private void ConfirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            new AuthWindow().ShowDialog();
+        }
     }
 }
