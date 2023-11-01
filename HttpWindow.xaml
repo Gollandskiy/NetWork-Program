@@ -8,11 +8,15 @@
         Title="HttpWindow" Height="450" Width="800">
     <StackPanel Orientation="Vertical">
         <Button x:Name="get1Button"
-            Content="GET" Click="get1Button_Click"/>
+            Content="GET" Click="get1Button_Click" Margin="10 5"/>
+        <Button x:Name="ratesButton"
+            Content="Rates" Click="ratesButton_Click" Margin="10 5"/>
+        <Button x:Name="popularButton"
+            Content="EUR USD XAU" Click="popularButton_Click" Margin="10 5"/>
         <Button x:Name="getXMLButton"
-            Content="GET XML" Click="getXMLButton_Click"/>
+            Content="GET XML" Click="getXMLButton_Click" Margin="10 5"/>
         <Button x:Name="getJSONButton"
-            Content="GET JSON" Click="getJSONButton_Click"/>
-        <TextBlock x:Name="textBlock1" FontFamily="Courier New"/>
+            Content="GET JSON" Click="getJSONButton_Click" Margin="10 5"/>
+        <TextBlock x:Name="textBlock1" FontFamily="Courier New" Margin="10 5"/>
     </StackPanel>
 </Window>

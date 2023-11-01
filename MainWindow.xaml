@@ -33,5 +33,8 @@
         <Button x:Name="HttpButton" Content="Http"
                 Margin="20 10"
                 Padding="0 4 0 7" Click="HttpButton_Click"/>
+        <Button x:Name="CryptoButton" Content="Crypto"
+                Margin="20 10"
+                Padding="0 4 0 7" Click="CryptoButton_Click"/>
     </StackPanel>
 </Window>

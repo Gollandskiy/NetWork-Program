@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.Json;
 
 namespace Занятие_в_аудитории_1_05._10._2023__Сетевое_программирование_
 {
@@ -20,6 +21,8 @@ namespace Занятие_в_аудитории_1_05._10._2023__Сетевое_п
     /// </summary>
     public partial class HttpWindow : Window
     {
+        private List<NbuRate>? rates;
+        private String[] popularCc = { "XAU", "USD", "EUR" };
         public HttpWindow()
         {
             InitializeComponent();
@@ -56,7 +59,55 @@ namespace Занятие_в_аудитории_1_05._10._2023__Сетевое_п
             String body = await response.Content.ReadAsStringAsync();
             textBlock1.Text = $"\r\n{body}";
         }
+
+        private async void ratesButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (rates == null)
+            {
+                await loadRatesAsync();
+            }
+            if (rates == null)
+            {
+                return;
+            }
+            foreach (var rate in rates)
+            {
+                textBlock1.Text += $"\t {rate.cc} - {rate.txt} - {rate.rate}\n";
+            }
+        }
+        private async Task loadRatesAsync()
+        {
+            using HttpClient httpclient = new();
+            String body = await httpclient.GetStringAsync(@"https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json");
+            var rates = JsonSerializer.Deserialize<List<NbuRate>>(body);
+
+            if (rates == null)
+            {
+                MessageBox.Show("Error Deserializing");
+                return;
+            }
+        }
+        private async void popularButton_Click(object sender, RoutedEventArgs e)
+        {
+            using HttpClient httpclient = new();
+            String body = await httpclient.GetStringAsync(@"https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json");
+            var rates = JsonSerializer.Deserialize<List<NbuRate>>(body);
+            foreach (var rate in rates)
+            {
+                if (popularCc.Contains(rate.cc))
+                textBlock1.Text += $"\t {rate.cc} - {rate.txt} - {rate.rate}\n";
+            }
+        }
     }
+    class NbuRate
+    {
+        public int R030 { get; set; }
+        public string txt { get; set; }
+        public double rate { get; set; }
+        public string cc { get; set; }
+        public string exchangedate { get; set; }
+    }
+
     public static class EllipsisExtensions
     {
         public static string Ellipsis(this string str, int maxLength)
