@@ -36,7 +36,7 @@
             </ListView.Resources>
         </ListView>
 
-        <Canvas Grid.Row="1" Grid.Column="1"/>
+        <Canvas Grid.Row="1" Grid.Column="1" x:Name="Graph"/>
 
     </Grid>
 </Window>
